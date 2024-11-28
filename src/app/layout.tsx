@@ -5,7 +5,11 @@ export const metadata = {
   description: "Online Code Editor with multiple language support",
 };
 
-export default function RootLayout({ children }) {
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body>{children}</body>
