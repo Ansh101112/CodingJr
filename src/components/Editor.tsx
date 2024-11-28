@@ -5,10 +5,15 @@ import { useEffect, useRef } from "react";
 import { python } from "@codemirror/lang-python";
 import { javascript } from "@codemirror/lang-javascript";
 import { cpp } from "@codemirror/lang-cpp";
-import { placeholder } from "@codemirror/view"; // To add placeholder text
+import { placeholder } from "@codemirror/view";
 import "../app/globals.css";
 
-const Editor = ({ language, code }) => {
+interface EditorProps {
+  language: string;
+  code: string;
+}
+
+const Editor = ({ language, code }: EditorProps) => {
   const editorRef = useRef<HTMLDivElement | null>(null);
 
   const getLanguageExtension = (lang: string): Extension => {
@@ -27,34 +32,32 @@ const Editor = ({ language, code }) => {
   useEffect(() => {
     const view = new EditorView({
       state: EditorState.create({
-        doc: code || "start coding here", // Default code comment
+        doc: code || "start coding here",
         extensions: [
           getLanguageExtension(language),
-          // Enable line wrapping and increase line height for readability
           EditorView.theme({
             "&": {
-              fontSize: "16px", // Increase text size
-              whiteSpace: "pre-wrap", // Allow line breaks on long lines
-              wordWrap: "break-word", // Wrap text at the edge of the editor
+              fontSize: "16px",
+              whiteSpace: "pre-wrap",
+              wordWrap: "break-word",
             },
             ".cm-content": {
-              fontSize: "16px", // Ensure content has increased size
+              fontSize: "16px",
             },
             ".cm-cursor": {
-              borderLeft: "2px solid white", // Make the cursor white and larger
-              animation: "blink-caret 1s step-end infinite", // Blink the cursor
+              borderLeft: "2px solid white",
+              animation: "blink-caret 1s step-end infinite",
             },
             ".cm-line": {
-              lineHeight: "1.6", // Adjust line height for readability
+              lineHeight: "1.6",
             },
           }),
-          placeholder("start coding here"), // Show placeholder in the editor
+          placeholder("start coding here"),
         ],
       }),
       parent: editorRef.current!,
     });
 
-    // Ensure the editor is focused when mounted
     view.focus();
 
     return () => view.destroy();
