@@ -57,7 +57,7 @@ const Layout = () => {
           </button>
         </header>
         <div className="editor">
-          <Editor language={selectedLanguage} code={code} setCode={setCode} />
+          <Editor language={selectedLanguage} code={code} />
         </div>
         <div className="output-panel">
           <h3>Output</h3>

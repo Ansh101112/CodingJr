@@ -11,10 +11,9 @@ import "../app/globals.css";
 interface EditorProps {
   language: string;
   code: string;
-  setCode: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Editor = ({ language, code, setCode }: EditorProps) => {
+const Editor = ({ language, code }: EditorProps) => {
   const editorRef = useRef<HTMLDivElement | null>(null);
 
   const getLanguageExtension = (lang: string): Extension => {
