@@ -8,7 +8,7 @@ import { cpp } from "@codemirror/lang-cpp";
 import { placeholder } from "@codemirror/view"; // To add placeholder text
 import "../app/globals.css";
 
-const Editor = ({ language, code, setCode }) => {
+const Editor = ({ language, code }) => {
   const editorRef = useRef<HTMLDivElement | null>(null);
 
   const getLanguageExtension = (lang: string): Extension => {
